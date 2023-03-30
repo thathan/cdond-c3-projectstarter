@@ -159,10 +159,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-      - run: 
-          name: Destroy any created stacks
-          command: destroy-environment
-          when: on_fail  
+      - destroy-environment:
 
 #   configure-infrastructure:
 #     docker:
