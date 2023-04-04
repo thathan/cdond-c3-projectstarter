@@ -76,7 +76,7 @@ jobs:
           keys: [frontend-build]
       - run:
           name: Run front-end unit tests
-          command: | 
+          command: |
             cd frontend
             npm install
             npm run test
@@ -90,7 +90,7 @@ jobs:
           keys: [backend-build]
       - run:
           name: Run back-end unit tests
-          command: | 
+          command: |
             cd backend
             npm install
             npm run test
@@ -104,7 +104,7 @@ jobs:
           keys: [frontend-build]
       - run: 
           name: Scan frontend
-          command: | 
+          command: |
             cd frontend
             npm install
             npm audit fix --audit-level=critical --force
@@ -120,7 +120,7 @@ jobs:
           keys: [backend-build]
       - run:
           name: Scan backend
-          command: | 
+          command: |
             cd backend
             npm install
             npm audit fix --audit-level=critical --force
@@ -172,7 +172,7 @@ jobs:
       - run: 
           name: Install dependencies
           command: |
-            apk add --update tar gzip ansible aws-cli
+            apk add --update tar gzip ansible && pip3 install --upgrade pip && pip3 install --no-cache-dir awscli
       - attach_workspace: 
           at: ~/
       - run:
