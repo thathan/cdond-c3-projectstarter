@@ -17,11 +17,11 @@
       wait_for_connection:
         timeout: 600
 
-     - name: Check for Python
-       command: test -e /usr/bin/python
-       changed_when: false
-       failed_when: false
-       register: check_python
+    - name: Check for Python
+      command: test -e /usr/bin/python
+      changed_when: false
+      failed_when: false
+      register: check_python
 
     - name: "install python for Ansible."
       command: apt -y update && apt install -y python-minimal
