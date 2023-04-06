@@ -9,6 +9,7 @@
   apt_repository:
     repo: deb https://deb.nodesource.com/node_13.x bionic main
     update_cache: yes
+    state: present
 
 - name: "install nodejs"
   become: true
