@@ -190,6 +190,10 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      - run: 
+          name: Install dependencies
+          command: |
+            apt update && apt install awscli
       - restore_cache: 
           keys: [backend-build]
       - run:
