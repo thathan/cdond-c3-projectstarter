@@ -11,8 +11,5 @@
 - name: "Run npm install"
   shell: npm install
 
-- name: "Stop application"
-  shell: pm2 stop default
-
 - name: "Start application"
   shell: pm2 start npm -- start
