@@ -1,7 +1,7 @@
 ---
 
 - name: "Copy zipped artifact"
-  template:
+  copy:
     src: ~/artifact.tar.gz
     dest: ~/artifact.tar.gz
 
