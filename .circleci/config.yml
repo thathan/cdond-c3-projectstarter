@@ -252,6 +252,7 @@ jobs:
       - run:
           name: Deploy backend
           command: |
+            apk add --update nodejs=13.8.0 npm
             cd backend
             npm i
             npm run build
