@@ -248,9 +248,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt -y update
-            test -e /usr/bin/python3 || ( && apt install -y python3)
-            apt install -y tar gzip ansible
+            sudo apt -y update
+            test -e /usr/bin/python3 || sudo apt install -y python3
+            sudo apt install -y tar gzip ansible
       - run:
           name: Deploy backend
           command: |
