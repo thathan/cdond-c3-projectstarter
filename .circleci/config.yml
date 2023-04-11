@@ -280,7 +280,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add curl
+            apk add curl && apk add --no-cache aws-cli
       - run:
           name: Get backend url
           command: |
