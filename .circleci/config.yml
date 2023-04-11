@@ -238,7 +238,7 @@ jobs:
             npm install
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
-            aws s3 cp dist s3://udapeople-kk3j287dhjppmz433 --recursive
+            aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
                     
@@ -287,7 +287,7 @@ jobs:
             export BACKEND_IP=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
-            if curl "${API_URL}/api/status" | grep "ok"
+            if curl --connect-timeout 10 --max-time 10 --retry 10 --retry-delay 0 --retry-max-time 180 --retry-connrefused "${API_URL}/api/status" | grep "ok"
             then
               return 0
             else
@@ -296,11 +296,11 @@ jobs:
       - run:
           name: Frontend smoke test.
           command: |
-            URL="http://udapeople-kk3j287dhjppmz433.s3-website-us-east-1.amazonaws.com/#/employees"
+            URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-west-2.amazonaws.com/#/employees"
             echo ${URL} 
-            if curl --connect-timeout 10 --max-time 10 --retry 10 --retry-delay 0 --retry-max-time 180 --retry-connrefused -s ${URL} | grep "Welcome"
+            if curl -s ${URL} | grep "Welcome"
             then
-              return 1
+              return 0
             else
               return 1
             fi
