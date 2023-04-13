@@ -295,12 +295,15 @@ jobs:
 
   smoke-test:
     docker:
-      - image: alpine:3.17
+      - image: circleci/node:13.8.0
     steps:
+      - checkout
       - run:
           name: Install dependencies
           command: |
-            apk add curl && apk add --no-cache aws-cli
+            sudo apt -y update
+            test -e /usr/bin/python3 || sudo apt install -y python3
+            sudo apt install awscli
       - run:
           name: Backend smoke test.
           command: |
