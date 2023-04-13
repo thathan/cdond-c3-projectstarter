@@ -32,7 +32,7 @@ commands:
           when: on_fail
           command: |
             SUCCESS=$(curl --insecure  https://kvdb.io/BB3axYh7AzkRn1f9CUV3Up/migration_<< parameters.workflow_id >>)
-            if(( $SUCCESS==1 )); 
+            if [ "$SUCCESS" = 1 ]
             then
               cd ~/project/backend
               npm install
