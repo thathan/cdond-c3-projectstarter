@@ -336,6 +336,11 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
+      - run:
+          name: Install dependencies
+          command: |
+            sudo apt -y update
+            sudo apt install tar -y
       - checkout
       - attach_workspace: 
           at: ~/
@@ -355,6 +360,11 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
+      - run:
+          name: Install dependencies
+          command: |
+            sudo apt -y update
+            sudo apt install tar -y
       - attach_workspace: 
           at: ~/
       - run:
