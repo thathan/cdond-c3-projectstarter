@@ -339,8 +339,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo apt -y update
-            sudo apt install tar -y
+            yum install -y tar gzip
       - checkout
       - attach_workspace: 
           at: ~/
@@ -363,8 +362,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo apt -y update
-            sudo apt install tar -y
+            yum install -y tar gzip
       - attach_workspace: 
           at: ~/
       - run:
