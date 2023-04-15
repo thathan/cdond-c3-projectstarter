@@ -374,7 +374,7 @@ jobs:
       - run:
           name: Get old stack workflow id
           command: |
-            echo "***""
+            echo "***"
             pwd
             ls
             cat ~/project/OldWorkflowID.txt
