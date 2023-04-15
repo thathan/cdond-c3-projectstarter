@@ -342,7 +342,7 @@ jobs:
             yum install -y tar gzip
       - checkout
       - attach_workspace: 
-          at: ~/
+          at: /tmp/workspace
       - run:
           name: Update cloudfront distribution
           command: |
@@ -364,7 +364,7 @@ jobs:
           command: |
             yum install -y tar gzip
       - attach_workspace: 
-          at: ~/
+          at: /tmp/workspace
       - run:
           name: Get old stack workflow id
           command: |
