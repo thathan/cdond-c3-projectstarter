@@ -171,6 +171,10 @@ jobs:
             - project/.circleci/ansible/inventory.txt
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+    filters:
+      branches:
+        only:
+          - master  
 
   configure-infrastructure:
     docker:
@@ -192,6 +196,10 @@ jobs:
             ansible-playbook -i inventory.txt configure-server.yml
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}  
+    filters:
+      branches:
+        only:
+          - master 
 
   run-migrations:
     docker:
@@ -224,6 +232,10 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations: 
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+    filters:
+      branches:
+        only:
+          - master 
 
   deploy-frontend:
     docker:
@@ -259,6 +271,10 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations: 
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+    filters:
+      branches:
+        only:
+          - master 
                     
   deploy-backend:
     docker:
@@ -292,6 +308,10 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations: 
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+    filters:
+      branches:
+        only:
+          - master 
 
   smoke-test:
     docker:
@@ -331,6 +351,10 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations: 
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+    filters:
+      branches:
+        only:
+          - master 
 
   cloudfront-update:
     docker:
@@ -360,6 +384,10 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations: 
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+    filters:
+      branches:
+        only:
+          - master 
 
   cleanup:
     docker:
@@ -390,6 +418,10 @@ jobs:
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
             fi
+    filters:
+      branches:
+        only:
+          - master 
             
 
 workflows:
